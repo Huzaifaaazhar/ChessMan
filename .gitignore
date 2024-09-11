@@ -1,0 +1,26 @@
+# Virtual Environment
+env/
+
+# Compiled Python Files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# TensorFlow Model Files
+*.keras
+*.h5
+
+# IDE/Editor Settings
+.idea/
+.vscode/
+
+# OS Specific Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local configuration files
+*.env

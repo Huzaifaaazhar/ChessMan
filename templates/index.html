@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Piece Recognition</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Chess Piece Recognition</h1>
+    </header>
+    <main>
+        <div class="container">
+            <form action="/predict/" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" id="file" accept="image/*" required>
+                <button type="submit">Upload Image</button>
+            </form>
+            <div id="result">
+                <!-- Prediction result will be displayed here -->
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Chessman. All rights reserved.</p>
+    </footer>
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const fileInput = document.querySelector('#file');
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+
+            const response = await fetch('/predict/', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            document.querySelector('#result').innerText = `Prediction: ${result.prediction}`;
+        });
+    </script>
+</body>
+</html>
